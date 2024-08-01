@@ -1,18 +1,30 @@
 import { useEffect, useState } from "react"
 
+export default function Van() {
+  const [vans, setVans] = useState([])
 
-export function Van () {
-    const [van, setVan] = useState([])
-    useEffect(() => {
-        fetch("/api/vans")
-        .then(res => res.json())
-        .then(data => console.log(data))
-    },[])
-    return(
-        <div>
-            <h1>Vans page goes here 🚐</h1>
+  useEffect(() => {
+    fetch("/api/vans")
+      .then(res => res.json())
+      .then(data => console.log(data))
+  }, [])
+  
 
-        </div>
-    )
+  const vanElements = vans.map(van => (
+    <div key={van.id}>
+      <img src={van.imageUrl} alt={van.name} />
+      <div>
+        <h3>{van.name}</h3>
+        <p>{van.price}</p>
+        
+      </div>
+    </div>
+  ))
+
+  return (
+    <div>
+      {vanElements}
+    </div>
+  )
 }
-export default Van
+
