@@ -5,16 +5,32 @@ import './App.css'
 import About from "./Components/About"
 import Home from "./Components/Home"
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom"
+import Van from "./Components/Van"
 
 function App() {
   return (
     <BrowserRouter>
-    <Link to="/">Home</Link>
-    <Link to="/about">About</Link>
+    <header className='flex justify-between'>
+      <Link to="/" className='text-5xl'>#vanlife</Link>
+      <nav>
+        <div className='text-2xl '>
+
+        <Link to="/about">About</Link>
+        <Link to="/van" className='pl-4'>Van</Link>
+
+
+        </div>
+      
+
+      </nav>
+    </header>
+    
 
     <Routes>
-      <Route path='/' element = {<Home/>}/>
+    <Route path='/' element = {<Home/>}/>
       <Route path='/about' element = {<About/>}/>
+      <Route path='/van' element = {<Van/>}/>
+
     </Routes>
     </BrowserRouter>
     
