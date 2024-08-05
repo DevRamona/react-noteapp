@@ -1,9 +1,9 @@
 export default function About() {
   return (
-    <div>
+    <div className="bg-orange-50">
       <img className="m-20 w-[35rem] h-96" src="./image 54 (1).png "></img>
-      <div className="bg-zinc-700 p-6">
-      <h2 className="text-white font-bold text-5xl ">Don't squeeze in a sedan when you could relax in a van.</h2>
+      <div className="p-6">
+      <h2 className="text-black font-bold text-5xl ">Don't squeeze in a sedan when you could relax in a van.</h2>
       <p className="text-3xl ">
         Our mission is to enliven your road trip with the perfect travel van
         rental. Our vans are recertified before each trip to ensure your travel

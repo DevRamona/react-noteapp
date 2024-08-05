@@ -14,7 +14,7 @@ export default function Van() {
 
   const vanElements = vans.map(van => (
     <div key={van.id}>
-      <Link to={`/vans/${van.id}`}>
+      <Link to={`/van/${van.id}`}>
       <img src={van.imageUrl} alt={van.name} />
       <div className="text-3xl">
         <h3>{van.name}</h3>
@@ -28,7 +28,7 @@ export default function Van() {
   ))
 
   return (
-    <div>
+    <div className="bg-orange-50">
       {vanElements}
     </div>
   )
