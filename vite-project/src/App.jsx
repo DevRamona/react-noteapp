@@ -13,6 +13,7 @@ import Income from "./Host/Income";
 import Reviews from "./Host/Reviews";
 import HostLayout from "./Host/HostLayout";
 
+
 function App() {
   return (
     <div className="bg-orange-50">
@@ -20,14 +21,19 @@ function App() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/van" element={<Van />} />
-            <Route path="/van/:id" element={<VanDetail />} />
-            <Route path="/host" element={<HostLayout />}>
-            <Route path="/host" element={<Dashboard />} />
-             <Route path="/host/income" element={<Income />} />
-             <Route path="/host/reviews" element={<Reviews />} />
+            <Route path="about" element={<About />} />
+            <Route path="van">
+            <Route index element={<Van />} />
+            <Route path=":id" element={<VanDetail />} />
+            
             </Route>
+            
+            <Route path="host" element={<HostLayout />}>
+            <Route index element={<Dashboard />} />
+             <Route path="income" element={<Income />} />
+             <Route path="reviews" element={<Reviews />} />
+            </Route>
+          
             
           </Route>
         </Routes>
