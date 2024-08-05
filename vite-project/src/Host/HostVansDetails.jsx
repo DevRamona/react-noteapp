@@ -1,7 +1,41 @@
-export default function HostVansDetails() {
-    return (
-        <div>
-            <h1 className="mt-5 text-3xl">Host van details page</h1>
+import { Link, useParams } from "react-router-dom";
+import React from "react";
+import server from "../server";
+export default function HostVans() {
+  const [vans, setVans] = React.useState([]);
+  const params = useParams();
+
+  React.useEffect(() => {
+    fetch(`/api/host/vans/${params.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("anything", data.vans);
+        setVans(data.vans);
+      });
+  }, [params.id]);
+
+  const hostVansEls = vans.map((van) => (
+    <Link to={`/vans/${van.id}`} key={van.id} className="host-van-link-wrapper">
+      <div className="host-van-single" key={van.id}>
+        <img src={van.imageUrl} alt={`Photo of ${van.name}`} />
+        <div className="host-van-info">
+          <h3>{van.name}</h3>
+          <p>${van.price}/day</p>
         </div>
-    )
+      </div>
+    </Link>
+  ));
+
+  return (
+    <section>
+      <h1 className="host-vans-title">Your listed vans</h1>
+      <div className="">
+        {vans.length > 0 ? (
+          <section>{hostVansEls}</section>
+        ) : (
+          <h2>Loading...</h2>
+        )}
+      </div>
+    </section>
+  );
 }
