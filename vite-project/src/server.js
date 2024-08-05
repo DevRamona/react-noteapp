@@ -1,7 +1,7 @@
 import { createServer, Model } from "miragejs"
 
 
-createServer({
+const server = createServer({
     models: {
         vans: Model,
     },
@@ -28,3 +28,4 @@ createServer({
         })
     }
 })
+export default server;
