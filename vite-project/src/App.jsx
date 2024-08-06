@@ -13,8 +13,8 @@ import Dashboard from "./Host/Dashboard";
 import Income from "./Host/Income";
 import Reviews from "./Host/Reviews";
 import HostLayout from "./Host/HostLayout";
-import HostVans from "./Host/HostVans";
 import HostVansDetails from "./Host/HostVansDetails";
+import HostVans from "./Host/HostVans";
 
 function App() {
   return (

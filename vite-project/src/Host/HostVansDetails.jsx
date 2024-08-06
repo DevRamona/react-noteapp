@@ -1,41 +1,24 @@
-import { Link, useParams } from "react-router-dom";
-import React from "react";
-import server from "../server";
-export default function HostVans() {
-  const [vans, setVans] = React.useState([]);
+import React, { useState } from "react";
+import { useParams } from "react-router";
+export default function HostVansDetails() {
   const params = useParams();
-
+  const [currentVan, setCurrentVan] = useState(null);
   React.useEffect(() => {
     fetch(`/api/host/vans/${params.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("anything", data.vans);
-        setVans(data.vans);
-      });
-  }, [params.id]);
+      .then((res) => res.json()) 
+      .then((data) => {console.log("data",data);setCurrentVan(data.vans)});
+  }, []);
 
-  const hostVansEls = vans.map((van) => (
-    <Link to={`/vans/${van.id}`} key={van.id} className="host-van-link-wrapper">
-      <div className="host-van-single" key={van.id}>
-        <img src={van.imageUrl} alt={`Photo of ${van.name}`} />
-        <div className="host-van-info">
-          <h3>{van.name}</h3>
-          <p>${van.price}/day</p>
-        </div>
-      </div>
-    </Link>
-  ));
-
+  if (!currentVan) {
+    return <h2> Page loading ....</h2>;
+  }
   return (
-    <section>
-      <h1 className="host-vans-title">Your listed vans</h1>
-      <div className="">
-        {vans.length > 0 ? (
-          <section>{hostVansEls}</section>
-        ) : (
-          <h2>Loading...</h2>
-        )}
-      </div>
-    </section>
+    <>
+    {/* <p>{currentVan}</p> */}
+      <img src={currentVan.imageUrl} />
+      <h2>{currentVan.name}</h2>
+      <p>{currentVan.price}</p>
+      <p>{currentVan.type}</p>
+    </>
   );
 }
