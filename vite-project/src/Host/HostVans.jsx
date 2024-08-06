@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import React from "react";
 import server from "../server";
+
 export default function HostVans() {
   const [vans, setVans] = React.useState([]);
   const params = useParams();
@@ -28,7 +29,8 @@ export default function HostVans() {
 
   return (
     <section>
-      <h1 className="host-vans-title">Your listed vans</h1>
+      <h1 className="mt-6 tex-3xl">Your listed vans</h1>
+      
       <div className="">
         {vans.length > 0 ? (
           <section>{hostVansEls}</section>

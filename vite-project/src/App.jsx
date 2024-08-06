@@ -15,7 +15,9 @@ import Reviews from "./Host/Reviews";
 import HostLayout from "./Host/HostLayout";
 import HostVansDetails from "./Host/HostVansDetails";
 import HostVans from "./Host/HostVans";
-
+import HostVanInfo from "./Host/HostVanInfo";
+import HostVanPhotos from "./Host/HostVanPhotos";
+import HostVanPricing from "./Host/HostVanPricing";
 function App() {
   return (
     <div className="bg-orange-50">
@@ -33,7 +35,11 @@ function App() {
               <Route index element={<Dashboard />} />
               <Route path="income" element={<Income />} />
               <Route path="vans" element={<HostVans />} />
-              <Route path="vans/:id" element={<HostVansDetails />} />
+              <Route path="vans/:id" element={<HostVansDetails />}>
+              <Route index element={<HostVanInfo />}/>
+              <Route path="pricing" element={<HostVanPricing />}/>
+              <Route path="photos" element={<HostVanPhotos />}/>
+              </Route>
               <Route path="reviews" element={<Reviews />} />
             </Route>
           </Route>
