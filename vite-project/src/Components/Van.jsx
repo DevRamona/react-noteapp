@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import {Link} from "react-router-dom"
+import {Link, useSearchParams} from "react-router-dom"
 import server from "../server"
 
 export default function Van() {
@@ -11,8 +11,15 @@ export default function Van() {
       .then(data => setVans(data.vans))
   }, [])
   
+  const[searchParams, setSearchParams] = useSearchParams()
+  const typeFilter = searchParams.get("type")
+  console.log(typeFilter)
 
-  const vanElements = vans.map(van => (
+  const displayedType = typeFilter ?
+  vans.filter(van => van.type === typeFilter)
+  : vans
+
+  const vanElements = displayedType.map(van => (
     <div key={van.id}>
       <Link to={`/van/${van.id}`}>
       <img src={van.imageUrl} alt={van.name} />
