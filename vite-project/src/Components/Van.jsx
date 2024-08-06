@@ -35,9 +35,18 @@ export default function Van() {
   ))
 
   return (
+    <>
+    <div className="text-2xl space-x-5 m-8 ">
+      <button onClick={() => setSearchParams({type : "simple"})} className="px-3 py-2 bg-orange-400">simple</button>
+      <button onClick={() => setSearchParams({type : "rugged"})}className="px-3 py-2 bg-orange-400">rugged</button>
+      <button onClick={() => setSearchParams({type : "luxury"})}className=" px-3 py-2 bg-orange-400">luxury</button>
+      <button onClick={() => setSearchParams({})} className="underline"> clear filters</button>
+    </div>
     <div className="bg-orange-50">
       {vanElements}
     </div>
+    </>
+    
   )
 }
 
