@@ -5,12 +5,15 @@ import server from "../server";
 
 export default function Van() {
   const [vans, setVans] = useState([]);
+  const[loading, setLoading] = useState(false)
 
   useEffect(() => {
     async function loadVans() {
       const res = await getVan()
       // console.log("This console",res)
+      setLoading(true)
       setVans(res)
+      setLoading(false)
     }
     loadVans()
   }, []);
@@ -36,6 +39,9 @@ export default function Van() {
       </Link>
     </div>
   ));
+  if(loading) {
+    return <h2>Loading ...</h2>
+  }
 
   return (
     <>
