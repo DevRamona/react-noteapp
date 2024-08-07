@@ -18,7 +18,9 @@ import HostVans from "./Host/HostVans";
 import HostVanInfo from "./Host/HostVanInfo";
 import HostVanPhotos from "./Host/HostVanPhotos";
 import HostVanPricing from "./Host/HostVanPricing";
+import NotFound from "./Components/NotFound";
 function App() {
+
   return (
     <div className="bg-orange-50">
       <BrowserRouter>
@@ -42,6 +44,7 @@ function App() {
               </Route>
               <Route path="reviews" element={<Reviews />} />
             </Route>
+            <Route path="*" element={<NotFound/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

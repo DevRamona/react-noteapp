@@ -1,7 +1,7 @@
 
 import React, { useState } from "react"
 import { useParams, useLocation, Link} from "react-router-dom"
-import { BsArrowLeft } from "react-icons/bs";
+// import { BsArrowLeft } from "react-icons/bs";
 
 export default function VanDetail() {
     const params = useParams()
@@ -14,11 +14,12 @@ export default function VanDetail() {
         .then(data => setVans(data.vans))
     }, [params.id])
     const search = location.state?.search || ""
+    const type = location.state?.type || "all"
     return (
 
         
         <div className="bg-orange-50">
-            <Link relative="path" to= {`...${search}`}> <div className="flex text-3xl bg-red-700"><BsArrowLeft /> Back to all vans </div></Link>
+            <Link relative="path" to= {`..${search}`}> <div className="text-5xl"> Back to {type}vans </div></Link>
         {van ? (
             <div className="text-3xl">
                 <img src={van.imageUrl} />
