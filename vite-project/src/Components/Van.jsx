@@ -48,11 +48,11 @@ export default function Van() {
     </div>
   ));
   if (loading) {
-    return <h2>Loading ...</h2>;
+    return <h1 aria-live="polite">Loading ...</h1>;
   }
   
   if(error) {
-    return <h1>There was an error : {error.message}</h1>
+    return <h1 aria-live="assertive">There was an error : {error.message}</h1>
   }
 
   return (
