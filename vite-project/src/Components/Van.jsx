@@ -1,21 +1,29 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import {getVan} from "../getApi"
+import { getVan } from "../getApi";
 import server from "../server";
 
 export default function Van() {
   const [vans, setVans] = useState([]);
-  const[loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [error, setErrors] = useState(null);
 
   useEffect(() => {
     async function loadVans() {
-      const res = await getVan()
-      // console.log("This console",res)
-      setLoading(true)
-      setVans(res)
-      setLoading(false)
+      setLoading(true);
+      try {
+        const res = await getVan();
+
+        setVans(res);
+      } catch (err) {
+        setErrors(err);
+      } finally {
+        setLoading(false);
+      }
+
+      
     }
-    loadVans()
+    loadVans();
   }, []);
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -24,12 +32,12 @@ export default function Van() {
 
   const displayedType = typeFilter
     ? vans.filter((van) => van.type === typeFilter)
-    : vans
-    console.log(displayedType)
+    : vans;
+  console.log(displayedType);
 
   const vanElements = displayedType.map((van) => (
     <div key={van.id}>
-      <Link to={`${van.id}`} state={{ search : `?${searchParams.toString()}`}}>
+      <Link to={`${van.id}`} state={{ search: `?${searchParams.toString()}` }}>
         <img src={van.imageUrl} alt={van.name} />
         <div className="text-3xl">
           <h3>{van.name}</h3>
@@ -39,8 +47,12 @@ export default function Van() {
       </Link>
     </div>
   ));
-  if(loading) {
-    return <h2>Loading ...</h2>
+  if (loading) {
+    return <h2>Loading ...</h2>;
+  }
+  
+  if(error) {
+    return <h1>There was an error : {error.message}</h1>
   }
 
   return (
