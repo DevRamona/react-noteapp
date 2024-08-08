@@ -29,11 +29,11 @@ import { Router } from "lucide-react";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route element={<Layout />}>
+      <Route element={<Layout />} errorElement= {<Error/>}>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="van">
-          <Route index element={<Van />} errorElement= {<Error/>} loader={vansLoader}/>
+          <Route index element={<Van />}  loader={vansLoader}/>
           <Route path=":id" element={<VanDetail />} />
         </Route>
 
