@@ -9,10 +9,9 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
-  Route,
-  Link,
+  Route
 } from "react-router-dom";
-import Van from "./Components/Van";
+import Van, { loader as vansLoader } from "./Components/Van";
 import VanDetail from "./Components/VanDetail";
 import Layout from "./Components/Layout";
 import Dashboard from "./Host/Dashboard";
@@ -40,7 +39,7 @@ function App() {
         <Route path="host" element={<HostLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="income" element={<Income />} />
-          <Route path="vans" element={<HostVans />} />
+          <Route path="vans" element={<HostVans />} loader={vansLoader} />
           <Route path="vans/:id" element={<HostVansDetails />}>
             <Route index element={<HostVanInfo />} />
             <Route path="pricing" element={<HostVanPricing />} />

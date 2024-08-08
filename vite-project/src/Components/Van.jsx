@@ -3,6 +3,10 @@ import { Link, useSearchParams } from "react-router-dom";
 import { getVan } from "../getApi";
 import server from "../server";
 
+export function loader() {
+  return "Van details goes here"
+}
+
 export default function Van() {
   const [vans, setVans] = useState([]);
   const [loading, setLoading] = useState(false);
