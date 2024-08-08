@@ -24,6 +24,7 @@ import HostVanInfo from "./Host/HostVanInfo";
 import HostVanPhotos from "./Host/HostVanPhotos";
 import HostVanPricing from "./Host/HostVanPricing";
 import NotFound from "./Components/NotFound";
+import Error from "./Components/Errors";
 import { Router } from "lucide-react";
 function App() {
   const router = createBrowserRouter(
@@ -32,14 +33,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="van">
-          <Route index element={<Van />} />
+          <Route index element={<Van />} errorElement= {<Error/>} loader={vansLoader}/>
           <Route path=":id" element={<VanDetail />} />
         </Route>
 
         <Route path="host" element={<HostLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="income" element={<Income />} />
-          <Route path="vans" element={<HostVans />} loader={vansLoader} />
+          <Route path="vans" element={<HostVans />}  />
           <Route path="vans/:id" element={<HostVansDetails />}>
             <Route index element={<HostVanInfo />} />
             <Route path="pricing" element={<HostVanPricing />} />

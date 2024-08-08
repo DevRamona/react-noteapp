@@ -1,35 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLoaderData, useSearchParams} from "react-router-dom";
 import { getVan } from "../getApi";
 import server from "../server";
 
 export function loader() {
-  return "Van details goes here"
+  return getVan()
 }
 
 export default function Van() {
-  const [vans, setVans] = useState([]);
-  const [loading, setLoading] = useState(false);
+  
   const [error, setErrors] = useState(null);
 
-  useEffect(() => {
-    async function loadVans() {
-      setLoading(true);
-      try {
-        const res = await getVan();
-
-        setVans(res);
-      } catch (err) {
-        setErrors(err);
-      } finally {
-        setLoading(false);
-      }
-
-      
-    }
-    loadVans();
-  }, []);
-
+  const vans = useLoaderData()
+  console.log("Vans loader", vans)
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
   console.log(typeFilter);
@@ -37,7 +20,7 @@ export default function Van() {
   const displayedType = typeFilter
     ? vans.filter((van) => van.type === typeFilter)
     : vans;
-  console.log(displayedType);
+  console.log("The Displayed Type", displayedType);
 
   const vanElements = displayedType.map((van) => (
     <div key={van.id}>
@@ -51,9 +34,7 @@ export default function Van() {
       </Link>
     </div>
   ));
-  if (loading) {
-    return <h1 aria-live="polite">Loading ...</h1>;
-  }
+  
   
   if(error) {
     return <h1 aria-live="assertive">There was an error : {error.message}</h1>
