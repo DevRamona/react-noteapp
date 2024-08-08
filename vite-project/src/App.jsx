@@ -44,7 +44,7 @@ function App() {
               </Route>
               <Route path="reviews" element={<Reviews />} />
             </Route>
-            <Route path="*" element={<NotFound/>}/>
+            <Route path="*" element={<NotFound/>}/> 
           </Route>
         </Routes>
       </BrowserRouter>
