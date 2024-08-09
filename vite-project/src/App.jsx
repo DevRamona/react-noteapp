@@ -9,7 +9,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
-  Route
+  Route,
 } from "react-router-dom";
 import Van, { loader as vansLoader } from "./Components/Van";
 import VanDetail from "./Components/VanDetail";
@@ -25,22 +25,26 @@ import HostVanPhotos from "./Host/HostVanPhotos";
 import HostVanPricing from "./Host/HostVanPricing";
 import NotFound from "./Components/NotFound";
 import Error from "./Components/Errors";
+import Login from "./Components/Login";
+import AuthRequired from "./Components/Authrequired";
 import { Router } from "lucide-react";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route element={<Layout />} errorElement= {<Error/>}>
+      <Route element={<Layout />} errorElement={<Error />}>
         <Route path="/" element={<Home />} />
+        <Route path="protected" element={<h1>Only sensitive information here</h1>} />
         <Route path="about" element={<About />} />
+        <Route path="login" element={<Login />} />
         <Route path="van">
-          <Route index element={<Van />}  loader={vansLoader}/>
+          <Route index element={<Van />} loader={vansLoader} />
           <Route path=":id" element={<VanDetail />} />
         </Route>
 
         <Route path="host" element={<HostLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="income" element={<Income />} />
-          <Route path="vans" element={<HostVans />}  />
+          <Route path="vans" element={<HostVans />} />
           <Route path="vans/:id" element={<HostVansDetails />}>
             <Route index element={<HostVanInfo />} />
             <Route path="pricing" element={<HostVanPricing />} />
