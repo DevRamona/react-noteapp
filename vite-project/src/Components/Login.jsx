@@ -39,7 +39,7 @@ export default function Login() {
           onChange={handleChange}
           className="w-full border p-5 mt-3"
         />
-        <button className="px-10 py-1 bg-orange-600 mt-3 ">Log in </button>
+        <button className="px-10 py-1 bg-orange-600 mt-3 ">Log in page </button>
       </form>
       
     </div>
