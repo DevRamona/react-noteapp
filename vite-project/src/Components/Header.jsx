@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <header className="flex justify-between bg-orange-50">
       <NavLink to="/" className="text-5xl">
-        #vanlife
+        #vanlife in the city. What do you think about this
       </NavLink>
       <nav>
         <div className="text-2xl flex ">
